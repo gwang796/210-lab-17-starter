@@ -18,14 +18,13 @@ struct Node {
 void output(Node *);
 void addFront(Node *, Node *);
 void addBack(Node *, Node *);
-void deleting(Node *, Node *, int);
-void insert(Node *, Node *, int, int);
+void deleting(Node *, Node *);
+void insert(Node *, Node *);
 void deleteAll(Node *, Node *);
 
 int main() {
     srand(time(0));
     Node *head = nullptr;
-    int count = 0;
 
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
@@ -45,40 +44,13 @@ int main() {
         }
     }
     output(head);
-
-    // deleting a node
     Node * current = head;
-    int entry;
-
-    // insert a node
-    /*current = head;
-    cout << "After which node to insert 10000? " << endl;
-    count = 1;
-    while (current) {
-        cout << "[" << count++ << "] " << current->value << endl;
-        current = current->next;
-    }
-    cout << "Choice --> ";
-    cin >> entry;
-
-    current = head;
-    prev = head;
-    for (int i = 0; i < (entry); i++)
-        if (i == 0)
-            current = current->next;
-        else {
-            current = current->next;
-            prev = prev->next;
-        }
-    //at this point, insert a node between prev and current
-    Node * newnode = new Node;
-    newnode->value = 10000;
-    newnode->next = current;
-    prev->next = newnode;
-    output(head); */
 
     //calling deleting function
-    deleting(head, current);
+    deleting(head,current);
+    
+    //calling insert function
+    insert(head,current);
 
     // calling deleteAll function
     deleteAll(head,current);
@@ -106,9 +78,10 @@ void addFront(Node * xy){
 void addBack(Node *xy, Node *jk){
     
 }
-void deleting(Node *xy, Node *jk, int entry){
+void deleting(Node *xy, Node *jk){
     cout << "Which node to delete? " << endl;
     output(xy);
+    int entry;
     cout << "Choice --> ";
     cin >> entry;
 
@@ -130,10 +103,11 @@ void deleting(Node *xy, Node *jk, int entry){
     }
     output(xy);
 }
-void insert(Node *xy, Node *jk, int count, int entry){
+void insert(Node *xy, Node *jk){
     jk = xy;
     cout << "After which node to insert 10000? " << endl;
-    count = 1;
+    int count = 1;
+    int entry;
     while (jk) {
         cout << "[" << count++ << "] " << jk->value << endl;
         jk = jk->next;
