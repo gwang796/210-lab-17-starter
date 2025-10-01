@@ -14,6 +14,11 @@ struct Node {
 };
 
 void output(Node *);
+void addFront(Node *);
+void addBack(Node *);
+void deleting(Node *);
+void insert(Node *);
+void deleteAll(Node *);
 
 int main() {
     Node *head = nullptr;
@@ -116,4 +121,20 @@ void output(Node * hd) {
         current = current->next;
     }
     cout << endl;
+}
+
+void addFront(Node *){
+    
+}
+void addBack(Node *){
+    
+}
+void deleting(Node *){
+    
+}
+void insert(Node *){
+    
+}
+void deleteAll(Node *){
+    
 }
