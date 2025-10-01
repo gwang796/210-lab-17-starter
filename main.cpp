@@ -14,11 +14,11 @@ struct Node {
 };
 
 void output(Node *);
-void addFront(Node *);
-void addBack(Node *);
-void deleting(Node *);
-void insert(Node *);
-void deleteAll(Node *);
+void addFront(Node *, Node *);
+void addBack(Node *, Node *);
+void deleting(Node *, Node *);
+void insert(Node *, Node *);
+void deleteAll(Node *, Node *);
 
 int main() {
     Node *head = nullptr;
@@ -45,7 +45,7 @@ int main() {
 
     // deleting a node
     Node * current = head;
-    cout << "Which node to delete? " << endl;
+    /*cout << "Which node to delete? " << endl;
     output(head);
     int entry;
     cout << "Choice --> ";
@@ -94,9 +94,12 @@ int main() {
     newnode->value = 10000;
     newnode->next = current;
     prev->next = newnode;
-    output(head);
+    output(head); */
 
-    // calling deleteAll
+    //calling deleting function
+    deleting(head, current);
+
+    // calling deleteAll function
     deleteAll(head,current);
 
     return 0;
@@ -123,11 +126,58 @@ void addBack(Node *xy, Node *jk){
     
 }
 void deleting(Node *xy, Node *jk){
-    
+    cout << "Which node to delete? " << endl;
+    output(xy);
+    int entry;
+    cout << "Choice --> ";
+    cin >> entry;
+
+    // traverse that many times and delete that node
+    jk = xy;
+    Node *prev = xy;
+    for (int i = 0; i < (entry-1); i++)
+        if (i == 0)
+            jk = jk->next;
+        else {
+            jk = jk->next;
+            prev = prev->next;
+        }
+    // at this point, delete current and reroute pointers
+    if (jk) {  // checks for current to be valid before deleting the node
+        prev->next = jk->next;
+        delete jk;
+        jk = nullptr;
+    }
+    output(xy);
 }
 void insert(Node *xy, Node *jk){
-    
+    jk = xy;
+    cout << "After which node to insert 10000? " << endl;
+    count = 1;
+    while (jk) {
+        cout << "[" << count++ << "] " << jk->value << endl;
+        jk = jk->next;
+    }
+    cout << "Choice --> ";
+    cin >> entry;
+
+    jk = xy;
+    prev = xy;
+    for (int i = 0; i < (entry); i++)
+        if (i == 0)
+            jk = jk->next;
+        else {
+            jk = jk->next;
+            prev = prev->next;
+        }
+    //at this point, insert a node between prev and current
+    Node * newnode = new Node;
+    newnode->value = 10000;
+    newnode->next = jk;
+    prev->next = newnode;
+    output(xy);
 }
+
 void deleteAll(Node *xy, Node *jk){
     xy = jk;
     while (xy) {
