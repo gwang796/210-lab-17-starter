@@ -96,15 +96,8 @@ int main() {
     prev->next = newnode;
     output(head);
 
-    // deleting the linked list
-    current = head;
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
-    }
-    head = nullptr;
-    output(head);
+    // calling deleteAll
+    deleteAll(head,current);
 
     return 0;
 }
@@ -123,18 +116,25 @@ void output(Node * hd) {
     cout << endl;
 }
 
-void addFront(Node *){
+void addFront(Node * xy){
     
 }
-void addBack(Node *){
+void addBack(Node *xy, Node *jk){
     
 }
-void deleting(Node *){
+void deleting(Node *xy, Node *jk){
     
 }
-void insert(Node *){
+void insert(Node *xy, Node *jk){
     
 }
-void deleteAll(Node *){
-    
+void deleteAll(Node *xy, Node *jk){
+    xy = jk;
+    while (xy) {
+        jk = xy->next;
+        delete xy;
+        xy = jk;
+    }
+    jk = nullptr;
+    output(jk);
 }
