@@ -1,3 +1,8 @@
+
+//  COMSC-210 | Lab 17: Modularize the Linked List Code | Guo An Wang
+//  IDE used: Xcode
+//  Created by Guo An Wang on 10/1/25.
+
 #include <iostream>
 using namespace std;
 
