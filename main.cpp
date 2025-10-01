@@ -4,6 +4,8 @@
 //  Created by Guo An Wang on 10/1/25.
 
 #include <iostream>
+#include <iomanip>
+#include <ctime>
 using namespace std;
 
 const int SIZE = 7;  
@@ -16,11 +18,12 @@ struct Node {
 void output(Node *);
 void addFront(Node *, Node *);
 void addBack(Node *, Node *);
-void deleting(Node *, Node *);
-void insert(Node *, Node *);
+void deleting(Node *, Node *, int);
+void insert(Node *, Node *, int, int);
 void deleteAll(Node *, Node *);
 
 int main() {
+    srand(time(0));
     Node *head = nullptr;
     int count = 0;
 
@@ -45,32 +48,10 @@ int main() {
 
     // deleting a node
     Node * current = head;
-    /*cout << "Which node to delete? " << endl;
-    output(head);
     int entry;
-    cout << "Choice --> ";
-    cin >> entry;
-
-    // traverse that many times and delete that node
-    current = head;
-    Node *prev = head;
-    for (int i = 0; i < (entry-1); i++)
-        if (i == 0)
-            current = current->next;
-        else {
-            current = current->next;
-            prev = prev->next;
-        }
-    // at this point, delete current and reroute pointers
-    if (current) {  // checks for current to be valid before deleting the node
-        prev->next = current->next;
-        delete current;
-        current = nullptr;
-    }
-    output(head);
 
     // insert a node
-    current = head;
+    /*current = head;
     cout << "After which node to insert 10000? " << endl;
     count = 1;
     while (current) {
@@ -125,10 +106,9 @@ void addFront(Node * xy){
 void addBack(Node *xy, Node *jk){
     
 }
-void deleting(Node *xy, Node *jk){
+void deleting(Node *xy, Node *jk, int entry){
     cout << "Which node to delete? " << endl;
     output(xy);
-    int entry;
     cout << "Choice --> ";
     cin >> entry;
 
@@ -150,7 +130,7 @@ void deleting(Node *xy, Node *jk){
     }
     output(xy);
 }
-void insert(Node *xy, Node *jk){
+void insert(Node *xy, Node *jk, int count, int entry){
     jk = xy;
     cout << "After which node to insert 10000? " << endl;
     count = 1;
@@ -162,6 +142,7 @@ void insert(Node *xy, Node *jk){
     cin >> entry;
 
     jk = xy;
+    Node *prev = xy;
     prev = xy;
     for (int i = 0; i < (entry); i++)
         if (i == 0)
