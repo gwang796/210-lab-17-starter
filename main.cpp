@@ -127,27 +127,33 @@ void deleting(Node *&xy){
     int entry;
     cout << "Choice --> ";
     cin >> entry;
-
-    // traverse that many times and delete that node
-    jk = xy;
-    Node *prev = xy;
-    for (int i = 0; i < (entry-1); i++)
-        if (i == 0)
-            jk = jk->next;
-        else {
-            jk = jk->next;
-            prev = prev->next;
-        }
-    // at this point, delete current and reroute pointers
-    if (jk) {  // checks for current to be valid before deleting the node
-        prev->next = jk->next;
-        delete jk;
-        jk = nullptr;
+    //case 1: user chooses head(1)
+    if (entry == 1) {
+        Node *temp = xy;
+        xy = xy->next;
+        delete temp;
+        output(xy);
+        return;
     }
+    // case 2: deleting node further down linked list
+    Node *prev = xy;
+    Node *current = xy->next;
+
+    for (int i = 2; i < entry && current; i++) {
+        prev = current;
+        current = current->next;
+    }
+    //checking if within index
+    if (!current){
+        cout << "Invalid Choice" << endl;
+        return;
+    }
+    prev->next = current->next;
+    delete current;
     output(xy);
 }
+
 void insert(Node *&xy){
-    jk = xy;
     cout << "After which node to insert 10000? " << endl;
     Node *current = xy;
     int count = 1;
@@ -171,7 +177,7 @@ void insert(Node *&xy){
     //at this point, insert a node between prev and current
     Node * newnode = new Node;
     newnode->value = 10000;
-    newnode->next = current;
+    newnode->next = current->next;
     current->next = newnode;
     output(xy);
 }
