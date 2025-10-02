@@ -15,18 +15,42 @@ struct Node {
     Node *next;
 };
 
+//function output displays data of linked list
+//arguments : pointer to head of linked list
+//return : none
 void output(Node *);
+
+//function addFront adds data to head of linked list
+//arguments : reference to head of linked list
+//return : none
 void addFront(Node *&);
+
+//function addBack data to tail of linked list
+//arguments : reference to head of linked list
+//return : none
 void addBack(Node *&);
+
+//function deleting deletes chosen node of linked list
+//arguments : pointer to head of linked list, another pointer to traverse linked list
+//return : none
 void deleting(Node *, Node *);
+
+//function insert inputs data at selected Node
+//arguments : pointer to head of linked list, another pointer to traverse linked list
+//return : none
 void insert(Node *, Node *);
+
+//function deleteAll deallocates data
+//arguments : pointer to head of linked list, another pointer to traverse linked list
+//return : none
 void deleteAll(Node *, Node *);
+
 
 int main() {
     srand(time(0));
     Node *head = nullptr;
 
-    // create a linked list of size SIZE with random numbers 0-99
+    // create a linked list of size SIZE with random numbers 0-99 (inside addFront function)
     for (int i = 0; i < SIZE; i++) {
         addFront(head);
     }
@@ -65,9 +89,9 @@ void output(Node * hd) {
 }
 
 void addFront(Node *&xy){
-    int tmp_val = rand() % 100;
-    Node *newVal = new Node;
-    newVal->value= tmp_val;
+    int tmp_val = rand() % 100; //create random integer for node
+    Node *newVal = new Node; //creating new Struct to dynamically allocate new node
+    newVal->value= tmp_val; //new Struct gives value to node
     // adds node at head
     if (!xy) { // if this is the first node, it's the new head
         newVal->next = nullptr;
@@ -80,17 +104,17 @@ void addFront(Node *&xy){
 }
 void addBack(Node *&xy){
     int tmp_val = rand() % 100;
-    Node *newVal = new Node;
-    newVal->value= tmp_val;
-    newVal->next = nullptr;
-    if (!xy) {
+    Node *newVal = new Node;//creating new Struct to dynamically allocate new node
+    newVal->value= tmp_val; //new Struct gives value to node
+    newVal->next = nullptr; //new Node will be the last
+    if (!xy) { // if this is the first node, it's the new head
         xy = newVal;
-    } else {
+    } else { //otherwise goes to last node
         Node *current = xy;
-        while (current->next) {
+        while (current->next) { //moving to end of linked list
             current = current->next;
         }
-        current->next = newVal;
+        current->next = newVal; //link new node to end of list
     }
     output(xy);
 }
