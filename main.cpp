@@ -31,19 +31,19 @@ void addFront(Node *&);
 void addBack(Node *&);
 
 //function deleting deletes chosen node of linked list
-//arguments : pointer to head of linked list, another pointer to traverse linked list
+//arguments : reference to head of linked list
 //return : none
-void deleting(Node *, Node *);
+void deleting(Node *&);
 
 //function insert inputs data at selected Node
-//arguments : pointer to head of linked list, another pointer to traverse linked list
+//arguments : reference to head of linked list
 //return : none
-void insert(Node *, Node *);
+void insert(Node *&);
 
 //function deleteAll deallocates data
-//arguments : pointer to head of linked list, another pointer to traverse linked list
+//arguments : reference to head of linked list
 //return : none
-void deleteAll(Node *, Node *);
+void deleteAll(Node *&);
 
 
 int main() {
@@ -60,16 +60,15 @@ int main() {
     //calling addBack function
     cout << "Add to Back" << endl;
     addBack(head);
-    Node * current = head;
     //calling deleting function
     cout << "Calling delete function: " << endl;
-    deleting(head, current);
+    deleting(head);
     //calling insert function
     cout << "Insert Function: " << endl;
-    insert(head,current);
+    insert(head);
     // calling deleteAll function
     cout << "Calling delete all function" << endl;
-    deleteAll(head,current);
+    deleteAll(head);
 
     return 0;
 }
@@ -119,7 +118,7 @@ void addBack(Node *&xy){
     output(xy);
 }
 
-void deleting(Node *xy, Node *jk){
+void deleting(Node *&xy){
     cout << "Which node to delete? " << endl;
     output(xy);
     int entry;
@@ -144,43 +143,43 @@ void deleting(Node *xy, Node *jk){
     }
     output(xy);
 }
-void insert(Node *xy, Node *jk){
+void insert(Node *&xy){
     jk = xy;
     cout << "After which node to insert 10000? " << endl;
+    Node *current = xy;
     int count = 1;
     int entry;
-    while (jk) {
-        cout << "[" << count++ << "] " << jk->value << endl;
-        jk = jk->next;
+    while (current) {
+        cout << "[" << count++ << "] " << current->value << endl;
+        current = current->next;
     }
     cout << "Choice --> ";
     cin >> entry;
 
-    jk = xy;
-    Node *prev = xy;
-    prev = xy;
-    for (int i = 0; i < (entry); i++)
-        if (i == 0)
-            jk = jk->next;
-        else {
-            jk = jk->next;
-            prev = prev->next;
-        }
+    current = xy;
+    for (int i = 0; i < entry&&current; i++){
+        current = current->next;
+    }
+    if (!current) {
+        cout << "Invalid Choice" << endl;
+        return;
+    }
+    
     //at this point, insert a node between prev and current
     Node * newnode = new Node;
     newnode->value = 10000;
-    newnode->next = jk;
-    prev->next = newnode;
+    newnode->next = current;
+    current->next = newnode;
     output(xy);
 }
 
-void deleteAll(Node *xy, Node *jk){
-    xy = jk;
-    while (xy) {
-        jk = xy->next;
-        delete xy;
-        xy = jk;
+void deleteAll(Node *&xy){
+    Node *current = xy;
+    while (current) {
+        Node *next = current->next;
+        delete current;
+        current = next;
     }
-    jk = nullptr;
-    output(jk);
+    xy = nullptr;
+    output(xy);
 }
