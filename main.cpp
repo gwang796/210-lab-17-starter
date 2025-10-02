@@ -17,7 +17,7 @@ struct Node {
 
 void output(Node *);
 void addFront(Node *&);
-void addBack(Node *, Node *);
+void addBack(Node *&);
 void deleting(Node *, Node *);
 void insert(Node *, Node *);
 void deleteAll(Node *, Node *);
@@ -30,16 +30,21 @@ int main() {
     for (int i = 0; i < SIZE; i++) {
         addFront(head);
     }
+    //calling output function
+    cout << "Original Linked List: " << endl;
     output(head);
+    //calling addBack function
+    cout << "Add to Back" << endl;
+    addBack(head);
     Node * current = head;
-
     //calling deleting function
+    cout << "Calling delete function: " << endl;
     deleting(head, current);
-    
     //calling insert function
+    cout << "Insert Function: " << endl;
     insert(head,current);
-
     // calling deleteAll function
+    cout << "Calling delete all function" << endl;
     deleteAll(head,current);
 
     return 0;
@@ -73,9 +78,23 @@ void addFront(Node *&xy){
         xy = newVal;
     }
 }
-void addBack(Node *xy, Node *jk){
-    
+void addBack(Node *&xy){
+    int tmp_val = rand() % 100;
+    Node *newVal = new Node;
+    newVal->value= tmp_val;
+    newVal->next = nullptr;
+    if (!xy) {
+        xy = newVal;
+    } else {
+        Node *current = xy;
+        while (current->next) {
+            current = current->next;
+        }
+        current->next = newVal;
+    }
+    output(xy);
 }
+
 void deleting(Node *xy, Node *jk){
     cout << "Which node to delete? " << endl;
     output(xy);
