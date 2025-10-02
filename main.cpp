@@ -16,12 +16,11 @@ struct Node {
 };
 
 void output(Node *);
-void addFront(Node *, Node *);
+void addFront(Node *&);
 void addBack(Node *, Node *);
 void deleting(Node *, Node *);
 void insert(Node *, Node *);
 void deleteAll(Node *, Node *);
-//start
 
 int main() {
     srand(time(0));
@@ -29,26 +28,13 @@ int main() {
 
     // create a linked list of size SIZE with random numbers 0-99
     for (int i = 0; i < SIZE; i++) {
-        int tmp_val = rand() % 100;
-        Node *newVal = new Node;
-        
-        // adds node at head
-        if (!head) { // if this is the first node, it's the new head
-            head = newVal;
-            newVal->next = nullptr;
-            newVal->value = tmp_val;
-        }
-        else { // its a second or subsequent node; place at the head
-            newVal->next = head;
-            newVal->value = tmp_val;
-            head = newVal;
-        }
+        addFront(head);
     }
     output(head);
     Node * current = head;
 
     //calling deleting function
-    deleting(head,current);
+    deleting(head, current);
     
     //calling insert function
     insert(head,current);
@@ -73,8 +59,19 @@ void output(Node * hd) {
     cout << endl;
 }
 
-void addFront(Node * xy){
-    
+void addFront(Node *&xy){
+    int tmp_val = rand() % 100;
+    Node *newVal = new Node;
+    newVal->value= tmp_val;
+    // adds node at head
+    if (!xy) { // if this is the first node, it's the new head
+        newVal->next = nullptr;
+        xy = newVal;
+    }
+    else { // its a second or subsequent node; place at the head
+        newVal->next = xy;
+        xy = newVal;
+    }
 }
 void addBack(Node *xy, Node *jk){
     
