@@ -166,7 +166,7 @@ void insert(Node *&xy){
     cin >> entry;
 
     current = xy;
-    for (int i = 0; i < entry&&current; i++){
+    for (int i = 1; i < entry&&current; i++){
         current = current->next;
     }
     if (!current) {
@@ -174,7 +174,7 @@ void insert(Node *&xy){
         return;
     }
     
-    //at this point, insert a node between prev and current
+    //insert new node after current
     Node * newnode = new Node;
     newnode->value = 10000;
     newnode->next = current->next;
