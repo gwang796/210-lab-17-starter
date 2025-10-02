@@ -3,6 +3,9 @@
 //  IDE used: Xcode
 //  Created by Guo An Wang on 10/1/25.
 
+// xy in functions is pointer to struct Node object
+// changing functions deleting, insert, and delete all because two pointers Structs will cause bugs
+
 #include <iostream>
 #include <iomanip>
 #include <ctime>
