@@ -21,6 +21,7 @@ void addBack(Node *, Node *);
 void deleting(Node *, Node *);
 void insert(Node *, Node *);
 void deleteAll(Node *, Node *);
+//start
 
 int main() {
     srand(time(0));
